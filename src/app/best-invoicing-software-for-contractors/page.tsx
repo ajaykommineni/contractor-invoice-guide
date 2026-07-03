@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Check, ShieldCheck, Sparkles, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -22,12 +24,14 @@ interface Tool {
   pros: string[];
   cons: string[];
   url: string;
+  highlight?: boolean;
 }
 
 const tools: Tool[] = [
   {
     name: "QuoteIQ",
     tagline: "All-in-one field service platform built specifically for the trades",
+    highlight: true,
     pricing:
       "$29.99–$699/month, flat-rate tiers with no per-seat fees. 14-day free trial, no credit card required.",
     bestFor:
@@ -101,11 +105,15 @@ const tools: Tool[] = [
 
 export default function ContractorInvoicingHub() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-semibold tracking-tight">
+    <main className="mx-auto max-w-4xl px-6 py-16">
+      <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-semibold text-muted-foreground shadow-sm">
+        <ShieldCheck className="size-3.5 text-cta" aria-hidden="true" />
+        Updated for 2026
+      </span>
+      <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
         Best Invoicing Software for Contractors (2026)
       </h1>
-      <p className="mt-4 text-muted-foreground">
+      <p className="mt-4 max-w-3xl text-muted-foreground">
         We compared four invoicing and field-service tools built for
         contractors, based on published pricing, documented features, and
         verified reviews from G2, Capterra, and the App Store/Google Play —
@@ -113,10 +121,10 @@ export default function ContractorInvoicingHub() {
         vendor page. Pricing and features change, so treat exact numbers as a
         starting point and confirm on the provider&apos;s site before you buy.
       </p>
-      <p className="mt-4 text-sm text-muted-foreground">
+      <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
         Some links below are affiliate links — if you sign up through them we
         may earn a commission at no extra cost to you. See our{" "}
-        <Link href="/affiliate-disclosure" className="underline underline-offset-4">
+        <Link href="/affiliate-disclosure" className="font-medium text-primary underline underline-offset-4">
           affiliate disclosure
         </Link>{" "}
         for details. It doesn&apos;t change the ranking or what we say about
@@ -125,53 +133,71 @@ export default function ContractorInvoicingHub() {
 
       <div className="mt-10 space-y-8">
         {tools.map((tool) => (
-          <Card key={tool.name}>
+          <Card
+            key={tool.name}
+            className={
+              tool.highlight
+                ? "border-primary/30 shadow-brand ring-1 ring-primary/20"
+                : undefined
+            }
+          >
             <CardHeader>
-              <CardTitle className="text-xl">{tool.name}</CardTitle>
+              <div className="flex flex-wrap items-center gap-3">
+                <CardTitle className="text-xl">{tool.name}</CardTitle>
+                {tool.highlight && (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-secondary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                    <Sparkles className="size-3" aria-hidden="true" />
+                    Editor&apos;s pick
+                  </span>
+                )}
+              </div>
               <CardDescription>{tool.tagline}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="text-sm font-medium">Pricing</h3>
+                <h3 className="text-sm font-semibold text-foreground">Pricing</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tool.pricing}</p>
               </div>
               <div>
-                <h3 className="text-sm font-medium">Best for</h3>
+                <h3 className="text-sm font-semibold text-foreground">Best for</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{tool.bestFor}</p>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <h3 className="text-sm font-medium">Strengths</h3>
-                  <ul className="mt-1 list-disc space-y-1 pl-4 text-sm text-muted-foreground">
+                  <h3 className="text-sm font-semibold text-foreground">Strengths</h3>
+                  <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
                     {tool.pros.map((pro) => (
-                      <li key={pro}>{pro}</li>
+                      <li key={pro} className="flex gap-2">
+                        <Check className="mt-0.5 size-4 shrink-0 text-cta" aria-hidden="true" />
+                        <span>{pro}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium">Watch out for</h3>
-                  <ul className="mt-1 list-disc space-y-1 pl-4 text-sm text-muted-foreground">
+                  <h3 className="text-sm font-semibold text-foreground">Watch out for</h3>
+                  <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
                     {tool.cons.map((con) => (
-                      <li key={con}>{con}</li>
+                      <li key={con} className="flex gap-2">
+                        <X className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden="true" />
+                        <span>{con}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <a
-                href={tool.url}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="inline-block text-sm font-medium underline underline-offset-4"
-              >
-                View current pricing on {tool.name}&apos;s site →
-              </a>
+              <Button asChild variant={tool.highlight ? "default" : "outline"} size="sm">
+                <a href={tool.url} target="_blank" rel="noopener noreferrer nofollow">
+                  View current pricing on {tool.name}&apos;s site
+                </a>
+              </Button>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <div className="mt-12 rounded-xl border border-border bg-muted/40 p-6">
-        <h2 className="font-medium">How we put this together</h2>
+      <div className="mt-12 rounded-2xl border border-border bg-muted/40 p-6">
+        <h2 className="font-semibold text-foreground">How we put this together</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           This comparison is based on publicly available pricing pages,
           product documentation, and aggregated user reviews from G2,

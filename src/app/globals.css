@@ -1,39 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme inline {
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Lexend", ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --shadow-brand: 0 8px 24px -8px rgb(99 102 241 / 0.25);
+  --shadow-brand-lg: 0 20px 45px -12px rgb(99 102 241 / 0.3);
 }
 
 :root {
-  --background: oklch(0.99 0.003 90);
-  --foreground: oklch(0.2 0.02 260);
+  /* UI/UX Pro Max design system: Enterprise SaaS (indigo/violet), tuned for a
+     contractor-facing invoicing/accounting comparison site. */
+  --background: oklch(0.97 0.012 295);
+  --foreground: oklch(0.22 0.07 280);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.02 260);
-  --primary: oklch(0.42 0.14 255);
-  --primary-foreground: oklch(0.98 0.005 90);
-  --muted: oklch(0.96 0.006 90);
-  --muted-foreground: oklch(0.48 0.02 260);
-  --accent: oklch(0.93 0.05 95);
-  --accent-foreground: oklch(0.25 0.05 90);
-  --border: oklch(0.9 0.008 90);
-  --input: oklch(0.9 0.008 90);
-  --ring: oklch(0.42 0.14 255);
+  --card-foreground: oklch(0.22 0.07 280);
+  --primary: oklch(0.58 0.19 275);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.68 0.15 275);
+  --secondary-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.95 0.015 280);
+  --muted-foreground: oklch(0.48 0.03 275);
+  --accent: oklch(0.95 0.015 280);
+  --accent-foreground: oklch(0.3 0.08 280);
+  --cta: oklch(0.55 0.13 165);
+  --cta-foreground: oklch(0.99 0 0);
+  --border: oklch(0.91 0.02 280);
+  --input: oklch(0.91 0.02 280);
+  --ring: oklch(0.58 0.19 275);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
