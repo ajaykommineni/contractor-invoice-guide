@@ -12,13 +12,13 @@ export default function AffiliateDisclosurePage() {
       </h1>
       <div className="prose prose-neutral mt-6 max-w-none text-muted-foreground">
         <p>
-          Trade Invoice Guide is reader-supported. When you click certain
-          links on this site and sign up for a product, we may earn a
-          commission from that company at no additional cost to you.
+          Crew Invoice is reader-supported. When you click certain links on
+          this site and sign up for a product, we may earn a commission from
+          that company at no additional cost to you.
         </p>
         <p>
           This does not influence which products we recommend or how we rank
-          them. Our opinions and testing are our own, and we only recommend
+          them. Our research and opinions are our own, and we only recommend
           software we would genuinely suggest to a contractor asking us for
           advice.
         </p>

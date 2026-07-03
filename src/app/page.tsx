@@ -55,16 +55,18 @@ export default function Home() {
       </section>
 
       <section className="border-t border-border bg-muted/40">
-        <div className="mx-auto grid max-w-5xl gap-6 px-6 py-16 sm:grid-cols-3">
-          {trustPoints.map(({ icon: Icon, title, body }) => (
+        <div className="mx-auto grid max-w-5xl gap-x-10 gap-y-12 px-6 py-20 md:grid-cols-[1.3fr_1fr_1fr]">
+          {trustPoints.map(({ icon: Icon, title, body }, index) => (
             <div
               key={title}
-              className="rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-brand"
+              className={
+                index === 0
+                  ? "border-t-2 border-primary pt-5"
+                  : "border-t-2 border-border pt-5"
+              }
             >
-              <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Icon className="size-5" aria-hidden="true" />
-              </span>
-              <h2 className="mt-4 font-semibold text-foreground">{title}</h2>
+              <Icon className="size-5 text-primary" aria-hidden="true" />
+              <h2 className="mt-4 text-lg font-semibold text-foreground">{title}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{body}</p>
             </div>
           ))}

@@ -9,10 +9,10 @@ export function SiteHeader() {
           href="/"
           className="flex items-center gap-2 text-lg font-bold tracking-tight text-foreground"
         >
-          <span className="flex size-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground shadow-brand">
+          <span className="flex size-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-brand">
             <Receipt className="size-4" aria-hidden="true" />
           </span>
-          Contractor Invoice Guide
+          Crew Invoice
         </Link>
         <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
           <Link
